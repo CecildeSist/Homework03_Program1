@@ -6,6 +6,7 @@
 package com.example.homework03_program1;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
@@ -28,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addStudentButtonListener() {
+        btn_j_main_addStudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+            }
+        });
     }
 }
