@@ -20,6 +20,7 @@ public class AddNewStudent extends AppCompatActivity {
     EditText et_j_add_gpa;
     Spinner spn_j_add_majorSpin;
     Button btn_j_add_Major;
+    Button btn_j_add_Student;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,5 +37,6 @@ public class AddNewStudent extends AppCompatActivity {
         et_j_add_gpa = findViewById(R.id.et_v_add_GPA);
         spn_j_add_majorSpin = findViewById(R.id.spn_v_add_majorSpin);
         btn_j_add_Major = findViewById(R.id.btn_add_addMajor);
+        btn_j_add_Student = findViewById(R.id.btn_v_add_addStudent);
     }
 }
