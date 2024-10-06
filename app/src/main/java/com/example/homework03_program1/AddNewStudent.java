@@ -38,5 +38,7 @@ public class AddNewStudent extends AppCompatActivity {
         spn_j_add_majorSpin = findViewById(R.id.spn_v_add_majorSpin);
         btn_j_add_Major = findViewById(R.id.btn_add_addMajor);
         btn_j_add_Student = findViewById(R.id.btn_v_add_addStudent);
+
+        txt_j_add_label.setText("Add New Student");
     }
 }
