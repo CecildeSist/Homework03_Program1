@@ -13,6 +13,7 @@ public class AddNewStudent extends AppCompatActivity {
     EditText et_j_add_first;
     EditText et_j_add_last;
     EditText et_j_add_user;
+    EditText et_j_add_email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,5 +24,6 @@ public class AddNewStudent extends AppCompatActivity {
         et_j_add_first = findViewById(R.id.et_v_add_firstName);
         et_j_add_last = findViewById(R.id.et_v_add_lastName);
         et_j_add_user = findViewById(R.id.et_v_add_username);
+        et_j_add_email = findViewById(R.id.et_v_add_email);
     }
 }
