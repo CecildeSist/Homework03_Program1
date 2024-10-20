@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     Button btn_j_main_addStudent;
     ListView lv_j_main_students;
 
+    DatabaseHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Start AddStudent on button click
         mainButtonListener();
+
+        dbHelper = new DatabaseHelper(this);
     }
 
     private void mainButtonListener() {

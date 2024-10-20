@@ -1,6 +1,8 @@
 package com.example.homework03_program1;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -39,5 +41,57 @@ public class AddStudent extends AppCompatActivity {
 
         //Connect GUI elements
         et_j_student_fName = findViewById(R.id.et_v_student_fName);
+        et_j_student_lName = findViewById(R.id.et_v_student_lName);
+        et_j_student_uName = findViewById(R.id.et_v_student_uName);
+
+        txt_j_student_errorUName = findViewById(R.id.txt_v_student_errorUName);
+        //Set this to invisible by default
+        txt_j_student_errorUName.setVisibility(View.INVISIBLE);
+
+        //Connect rest of GUI elements
+        et_j_student_eMail = findViewById(R.id.et_v_student_eMail);
+        et_j_student_age = findViewById(R.id.et_v_student_age);
+        et_j_student_GPA = findViewById(R.id.et_v_student_GPA);
+
+        spn_j_student_majors = findViewById(R.id.spn_v_student_majors);
+
+        btn_j_student_addMajor = findViewById(R.id.btn_v_student_addMajor);
+        //Call listeners for each button
+        studentMajorButtonListener();
+        btn_j_student_add = findViewById(R.id.btn_v_student_add);
+        addStudentButton();
+        btn_j_student_back = findViewById(R.id.btn_v_student_back);
+        studentBackListener();
+    }
+
+    private void studentMajorButtonListener() {
+        btn_j_student_addMajor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent studentMajor = new Intent(AddStudent.this, AddMajor.class);
+                startActivity(studentMajor);
+            }
+        });
+    }
+
+    private void addStudentButton() {
+        btn_j_student_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent studentMain = new Intent(AddStudent.this, MainActivity.class);
+                //NOTE TO SELF write code for adding student to table of students
+                startActivity(studentMain);
+            }
+        });
+    }
+
+    private void studentBackListener() {
+        btn_j_student_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent studentMain = new Intent(AddStudent.this, MainActivity.class);
+                startActivity(studentMain);
+            }
+        });
     }
 }
