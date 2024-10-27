@@ -42,5 +42,10 @@ public class MainActivity extends AppCompatActivity {
         btn_j_main_addStudent = findViewById(R.id.btn_v_main_addStudent);
         btn_j_main_find = findViewById(R.id.btn_v_main_find);
         lv_j_main_students = findViewById(R.id.lv_v_main_students);
+
+        //Next step: add first three functions back to DatabaseHelper (DONE)
+        dbHelper = new DatabaseHelper(this);
+
+        //Next step: add next six functions back to DatabaseHelper
     }
 }
