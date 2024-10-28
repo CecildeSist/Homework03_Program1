@@ -44,6 +44,7 @@ public class AddMajor extends AppCompatActivity {
         btn_j_major_back = findViewById(R.id.btn_v_major_back);
 
         //Make text view invisible by default
+        tv_j_major_errorName.setText("Error: major name already in use");
         tv_j_major_errorName.setVisibility(View.INVISIBLE);
 
         fromAddMajorToAddStudent = new Intent(AddMajor.this, AddStudent.class);
@@ -52,6 +53,7 @@ public class AddMajor extends AppCompatActivity {
 
         //Call button listener for back button
         majorBackListener();
+        majorAddListener();
     }
 
     private void majorBackListener() {
@@ -68,10 +70,31 @@ public class AddMajor extends AppCompatActivity {
         btn_j_major_addMajor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Create strings in which to store major name and prefix
+                Intent majorToStudent = new Intent(AddMajor.this, AddStudent.class);
+
+                //Step 1: Create strings in which to store major name and prefix (DONE)
                 String newMajorName, newMajorPrefix;
                 newMajorName = et_j_major_majorName.getText().toString();
                 newMajorPrefix = et_j_major_majorPrefix.getText().toString();
+
+                //Step 2: see if any edittext empty or if major name already in database
+                if (newMajorName.isEmpty()) {
+                    tv_j_major_errorName.setText("Error: please fill out all boxes");
+                    tv_j_major_errorName.setVisibility(View.VISIBLE);
+                }
+                else if (newMajorPrefix.isEmpty()) {
+                    tv_j_major_errorName.setText("Error: please fill out all boxes");
+                    tv_j_major_errorName.setVisibility(View.VISIBLE);
+                } else if (dbHelper.majorExists(newMajorName)) {
+                    tv_j_major_errorName.setText("Error: major name already in use");
+                    tv_j_major_errorName.setVisibility(View.VISIBLE);
+                }
+                else {
+                    dbHelper.addNewMajor(newMajorName, newMajorPrefix);
+                    //Add new major to spinner in AddStudent (NOT DONE)
+                    fromAddMajorToAddStudent.putExtra("major passed", newMajorName);
+                    startActivity(majorToStudent);
+                }
             }
         });
     }

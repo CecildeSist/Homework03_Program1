@@ -13,7 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String students_table_name = "Students";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 14);
+        super(c, database_name, null, 21);
     }
 
     @Override
@@ -118,8 +118,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Code below DIDN'T WORK
     public void addNewStudent(String newU, String newF, String newL, String newE, Integer newA, Float newGPA, String newM) {
         Student newStudent = new Student();
-        int numStudentRecords = this.countRecordsFromTable(this.getStudents_table_name());
-        int newNumStudents = numStudentRecords + 1;
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -138,5 +136,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + students_table_name + " (username, fname, lname, email, age, GPA, major) VALUES ('" + newStudent.getuName() + "','" + newStudent.getfName() + "','" + newStudent.getlName() + "','" + newStudent.geteMail() + "','" + newStudent.getAge() + "','" + newStudent.getGPA() + "','" + newStudent.getMajor() + "');");
 
         db.close();
+    }
+
+    //Check if a given major name is already in the students table
+    public boolean majorExists(String newMajor) {
+        //Step 1: get readable database (DONE)
+        SQLiteDatabase db = this.getReadableDatabase();
+        //Step 2: create SQL statement to execute (DONE)
+        String checkMajorName = "SELECT count(majorName) FROM " + majors_table_name + " WHERE majorName = '" + newMajor + "';";
+        //Step 3: run the query (DONE)
+        Cursor cursor = db.rawQuery(checkMajorName, null);
+        //Step 4: move cursor to first (DONE)
+        cursor.moveToFirst();
+        //Step 5: get count (DONE)
+        int count = cursor.getInt(0);
+        //Step 6: close database (DONE)
+        db.close();
+        if (count != 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    //add new major to major table
+    public void addNewMajor(String majorN, String majorP) {
+        Major newMajor = new Major();
+        int numMajorRecords = this.countRecordsFromTable(this.getMajors_table_name());
+        int newNumMajors = numMajorRecords + 1;
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        newMajor.setId(newNumMajors);
+        newMajor.setmName(majorN);
+        newMajor.setmPrefix(majorP);
+
+        db.execSQL("INSERT INTO " + majors_table_name + " (majorID, majorName, majorPrefix) VALUES ('" + newMajor.getId() + "','" + newMajor.getmName() + "','" + newMajor.getmPrefix() + "');");
+
+        db.close();
+
     }
 }

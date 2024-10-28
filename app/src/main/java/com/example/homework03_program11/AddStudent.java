@@ -17,6 +17,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class AddStudent extends AppCompatActivity {
 
     //Create used GUI elements
@@ -72,6 +74,14 @@ public class AddStudent extends AppCompatActivity {
         spn_j_student_majors.setAdapter(addStudentAdapter);
 
         dbHelper = new DatabaseHelper(this);
+
+        Intent cameFrom = getIntent();
+        Bundle infoPassedToMe = cameFrom.getExtras();
+        if (infoPassedToMe != null) {
+            String newMajor = infoPassedToMe.getString("new type");
+            Student.studentMajor.majors.add(newMajor);
+            addStudentAdapter.notifyDataSetChanged();
+        }
 
         studentMajorButtonListener();
         addStudentButton();
