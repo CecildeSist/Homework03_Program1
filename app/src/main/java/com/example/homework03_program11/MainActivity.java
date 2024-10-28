@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         btn_j_main_find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, FindStudent.class));
+                startActivity(new Intent(MainActivity.this, FilterStudents.class));
             }
         });
     }

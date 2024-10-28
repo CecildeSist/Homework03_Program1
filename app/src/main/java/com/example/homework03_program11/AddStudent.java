@@ -78,7 +78,7 @@ public class AddStudent extends AppCompatActivity {
         Intent cameFrom = getIntent();
         Bundle infoPassedToMe = cameFrom.getExtras();
         if (infoPassedToMe != null) {
-            String newMajor = infoPassedToMe.getString("new type");
+            String newMajor = infoPassedToMe.getString("major passed");
             Student.studentMajor.majors.add(newMajor);
             addStudentAdapter.notifyDataSetChanged();
         }

@@ -1,10 +1,14 @@
 package com.example.homework03_program11;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -13,7 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String students_table_name = "Students";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 21);
+        super(c, database_name, null, 23);
     }
 
     @Override
@@ -176,4 +180,69 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
     }
+
+    /*@SuppressLint("Range")
+    public ArrayList<Student> findStudentGivenCritera(String u, String f, String l, String m, Integer gpaLower, Integer gpaUpper) {
+        Log.d("passed data ", u + " " + f + " " + l + " " + m + " " + gpaLower.toString() + " " + gpaUpper.toString());
+        ArrayList<Student> listStudents = new ArrayList<Student>();
+        String selectStatement = "Select * from " + students_table_name + " Where ";
+        if (u.isEmpty()) {
+            selectStatement += "username is not null ";
+        }
+        else {
+            selectStatement += "username = '" + u + "' ";
+        }
+        if (f.isEmpty()) {
+            selectStatement += "fname is not null ";
+        }
+        else {
+            selectStatement += "fname = '" + f + "' ";
+        }
+        if (l.isEmpty()) {
+            selectStatement += "lname is not null ";
+        }
+        else {
+            selectStatement += "lname = '" + f + "' ";
+        }
+        if (m.isEmpty()) {
+            selectStatement += "major is not null ";
+        }
+        else {
+            selectStatement += "major = '" + m + "' ";
+        }
+        if (gpaLower != null) {
+            selectStatement += "GPA > " + gpaLower + "' ";
+        }
+        if (gpaUpper != null) {
+            selectStatement += "GPA > " + gpaUpper + "' ";
+        }
+        selectStatement += ";";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(selectStatement, null);
+        String uname, fname, lname, email;
+        Integer age;
+        Float gpa;
+        String major;
+
+        if (cursor.moveToFirst()) {
+            do {
+                uname = cursor.getString(cursor.getColumnIndex("username"));
+                fname = cursor.getString(cursor.getColumnIndex("fname"));
+                lname = cursor.getString(cursor.getColumnIndex("lname"));
+                email = cursor.getString(cursor.getColumnIndex("email"));
+                age = cursor.getInt(cursor.getColumnIndex("age"));
+                gpa = cursor.getFloat(cursor.getColumnIndex("GPA"));
+                major = cursor.getString(cursor.getColumnIndex("major"));
+
+                String info = uname + " " + fname + " " + lname + " " + email + " " + age + " " + gpa + " " + major;
+
+                listStudents.add(info);
+            }
+            while (cursor.moveToNext());
+        }
+        db.close();
+        return listStudents;
+    }*/
 }
