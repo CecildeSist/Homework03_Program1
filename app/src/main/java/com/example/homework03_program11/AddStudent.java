@@ -69,7 +69,7 @@ public class AddStudent extends AppCompatActivity {
         btn_j_student_add = findViewById(R.id.btn_v_student_add);
         btn_j_student_back = findViewById(R.id.btn_v_student_back);
 
-        //Next step: populate spinner (DONE)
+        //Next step: populate spinner (NOT DONE)
         addStudentAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Student.studentMajor.getAllStudentMajors());
         spn_j_student_majors.setAdapter(addStudentAdapter);
 

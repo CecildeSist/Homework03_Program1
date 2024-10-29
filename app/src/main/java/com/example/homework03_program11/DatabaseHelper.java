@@ -17,7 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String students_table_name = "Students";
 
     public DatabaseHelper(Context c) {
-        super(c, database_name, null, 23);
+        super(c, database_name, null, 25);
     }
 
     @Override
@@ -182,6 +182,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /*@SuppressLint("Range")
+    attempt at filtering by criteria. DIDN'T WORk
     public ArrayList<Student> findStudentGivenCritera(String u, String f, String l, String m, Integer gpaLower, Integer gpaUpper) {
         Log.d("passed data ", u + " " + f + " " + l + " " + m + " " + gpaLower.toString() + " " + gpaUpper.toString());
         ArrayList<Student> listStudents = new ArrayList<Student>();
